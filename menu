@@ -1,0 +1,82 @@
+#!/bin/bash
+
+carpeta() {
+  echo "Escriba el nombre de la ruta donde desea crear la carpeta: "
+  read ruta_carpeta
+  echo "Escriba el nombre de la carpeta: "
+  read nom_carpeta
+  mkdir -p "$ruta_carpeta/$nom_carpeta"
+  echo "La carpeta $ruta_carpeta/$nom_carpeta ha sido creada correctamente."
+}
+
+
+fichero() {
+  echo "Escriba el nombre de la ruta donde desea crear el fichero: "
+  read ruta_fichero
+  echo "Escriba el nombre del fichero: "
+  read nom_fichero
+  touch "$ruta_fichero/$nom_fichero"
+  echo "El fichero $ruta_fichero/$nom_fichero a sido creado correctamente."
+  echo "Escriba el contenido del fichero y presione Ctrl+D cuando finalice: "
+  cat >> "$ruta_fichero/$nom_fichero"
+}
+
+
+adivinanza() {
+  echo "ADIVINANZAS"
+  echo "El juego consta con 3 opciones de adivinanzas. Selecciona la adivinanza que deberas descifrar (1, 2 o 3):"
+  read adivinanzas
+  case $adivinanzas in
+    1)
+      echo "Lana sube, lana baja. ¿Que es?"
+      read respuesta
+      if [ "$respuesta" = "la navaja" ]; then
+        echo "La respuesta es correcta"
+      else
+        echo "Respuesta incorrecta. La respuesta es la navaja."
+      fi
+      ;;
+    2)
+      echo "Es la frustraciòn vertical de un deseo horizontal."
+      read respuesta
+      if [ "$respuesta" = "bailar" ]; then
+        echo "La respuesta es correcta."
+      else
+        echo "Respuesta incorrecta. La respuesta es bailar."
+      fi
+      ;;
+    3)
+      echo "Todos pasan por mi, yo nunca paso por nadie. Todos preguntan por mi y yo nunca pregunto por nadie"
+      read respuesta
+      if [ "$respuesta" = "La calle" ]; then
+        echo "La respuesta es correcta."
+      else
+        echo "Respuesta incorrecta. La respuesta es la calle."
+      fi
+      ;;
+    *)
+      echo "Opción no válida"
+      ;;
+  esac
+}
+
+echo "Menú"
+echo "1. Crear carpeta"
+echo "2. Crear fichero"
+echo "3. Adivinanzas"
+read -p "Seleccione una opción del menù (1, 2 o 3): " opcion
+
+case $opcion in
+  1)
+    carpeta
+    ;;
+  2)
+    fichero
+    ;;
+  3)
+    adivinanza
+    ;;
+  *)
+    echo "Opción no disponible."
+    ;;
+esac
